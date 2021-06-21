@@ -1,0 +1,32 @@
+{
+  "name": "conexa-challenge-api",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": "git@github.com:moiseR29/conexa-challenge.git",
+  "author": "Moise Rebatta <moiserebatta@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "build": "lerna run build --stream",
+    "lint": "eslint ./packages --ext .ts",
+    "lint:fix": "eslint ./packages --fix --ext .ts",
+    "diff": "lerna diff"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-security": "^1.4.0",
+    "jest": "^27.0.4",
+    "lerna": "^4.0.0",
+    "prettier": "^2.3.0",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.2"
+  }
+}
