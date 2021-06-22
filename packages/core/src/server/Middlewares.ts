@@ -25,10 +25,14 @@ export class Middlewares {
   }
 
   private configCors(): cors.CorsOptions {
+    const whiteList = ['*'];
     return {
       allowedHeaders: ['Origin', 'x-conexa-token'],
-      // TODO case production or microservice origin: ['domain'],
-      origin: '*',
+      origin: function (origin, callback) {
+        if (whiteList.indexOf(origin!) !== -1 || whiteList.includes('*'))
+          callback(null, true);
+        else callback(new Error('Cors Not allowed'));
+      },
       methods: 'GET,OPTIONS,PUT,POST,DELETE',
     };
   }

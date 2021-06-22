@@ -19,7 +19,7 @@ export class LoginController {
 
       const { token, ...rest } = await useCase.run();
       res.setHeader(CONEXA_TOKEN, token);
-      return res.status(HTTP_STATUS.CREATED).send({ ...rest });
+      return res.status(HTTP_STATUS.OK).send({ ...rest });
     } catch (error) {
       Log.error(error.message);
       return res
