@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import { Logger, HTTP_STATUS, CONEXA_TOKEN } from '../../../../utils';
-import { CreateAccount } from '../../useCase';
+import { Login } from '../../useCase';
 import { MongoAccountDAO } from '../dao/mongo/MongoAccountDAO';
 
-export class CreateAccountController {
+export class LoginController {
   async run(req: Request, res: Response): Promise<any> {
-    const Log: Logger = new Logger('Create Account');
+    const Log: Logger = new Logger('Login');
     try {
       const accountDAO = new MongoAccountDAO();
 
-      const useCase = new CreateAccount({
+      const useCase = new Login({
         accountDAO,
         payload: {
           username: req.body.username,

@@ -2,20 +2,20 @@
 import { AccountDAO, Account } from '../domain';
 import { Logger, CryptManager } from '../../../utils';
 
-export interface CreateAccountData {
+export interface LoginData {
   accountDAO: AccountDAO;
   payload: Account;
 }
 
-export class CreateAccount {
+export class Login {
   private _accountDAO: AccountDAO;
   private _payload: Account;
   private _log: Logger;
 
-  constructor(data: CreateAccountData) {
+  constructor(data: LoginData) {
     this._accountDAO = data.accountDAO;
     this._payload = data.payload;
-    this._log = new Logger('Create Account Use Case');
+    this._log = new Logger('Login Use Case');
   }
 
   async run(): Promise<any> {
@@ -23,21 +23,13 @@ export class CreateAccount {
       this._payload.username,
     );
 
-    if (verifyExistsAccount) {
-      this._log.error('Account already exists');
-      throw new Error('Account already exists');
+    if (!verifyExistsAccount) {
+      this._log.error('Account not found');
+      throw new Error('Account not found');
     }
 
-    const passwordCrypt = await CryptManager.hash(this._payload.password);
-
-    const accountCreated = await this._accountDAO.create({
-      username: this._payload.username,
-      password: passwordCrypt,
-    });
-    this._log.info('Account Created');
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...rest } = accountCreated;
+    const { password, ...rest } = verifyExistsAccount;
 
     return {
       ...rest,

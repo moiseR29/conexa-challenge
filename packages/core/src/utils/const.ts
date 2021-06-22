@@ -9,7 +9,10 @@ export enum HTTP_STATUS {
   REQUEST_TIMEOUT = 408,
 }
 
+export const CONEXA_TOKEN = 'x-conexa-token';
+export const ACCESS_KEY = 'x-access-key';
+
 export interface TokenData {
-  accountId?: number;
+  accountId: number;
   username: string;
 }

@@ -9,12 +9,11 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "start": "lerna run start",
+    "start": "yarn build && sh ./scripts/start.sh",
     "test:coverage": "jest --coverage",
     "build": "lerna run build --stream",
     "lint": "eslint ./packages --ext .ts",
-    "lint:fix": "eslint ./packages --fix --ext .ts",
-    "diff": "lerna diff"
+    "lint:fix": "eslint ./packages --fix --ext .ts"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",

@@ -19,6 +19,6 @@ export const DefaultConfig: Config = {
     port: 8080,
     basePath: '/api',
     env: 'develop',
-    accessToken: 'egg',
+    accessToken: 'conexa',
   },
 };
