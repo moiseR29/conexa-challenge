@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
+    "start": "lerna run start",
     "test:coverage": "jest --coverage",
     "build": "lerna run build --stream",
     "lint": "eslint ./packages --ext .ts",
