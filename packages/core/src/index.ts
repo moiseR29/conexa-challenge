@@ -1,7 +1,7 @@
 import config from './config';
 import { App, Router, Middlewares } from './server';
 import { Mongo } from './database';
-import { Logger } from './utils';
+import { Logger, CryptManager } from './utils';
 
 const Log: Logger = new Logger('Index');
 
@@ -24,6 +24,7 @@ const main = async () => {
     Log.error(error);
     process.exit(1);
   }
+  console.log(await CryptManager.hash('conexa'))
 };
 
 main();
