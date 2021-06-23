@@ -5,13 +5,15 @@ import { Logger } from '../../../utils';
 export interface FindAccountData {
   accountDAO: AccountDAO;
   payload: {
-    accountId?: string;
+    account: string;
+    limit: number;
+    offset: number;
   };
 }
 
 export class FindAccount {
   private _accountDAO: AccountDAO;
-  private _payload: { accountId?: string };
+  private _payload: { account?: string; limit: number; offset: number };
   private _log: Logger;
 
   constructor(data: FindAccountData) {
@@ -24,18 +26,21 @@ export class FindAccount {
     let response;
 
     try {
-      if (this._payload.accountId) {
-        this._log.info('Find by id: -> ', this._payload.accountId);
-        response = await this._accountDAO.getById(this._payload.accountId);
+      if (this._payload.account) {
+        this._log.info('Find by : -> ', this._payload.account);
+        response = await this._accountDAO.getByUsername(this._payload.account);
         return response!;
       }
     } catch (error) {
       this._log.error(error.message);
-      throw new Error(`${this._payload.accountId} not found`);
+      throw new Error(`${this._payload.account} not found`);
     }
 
     this._log.info('Find All ');
-    response = await this._accountDAO.getAll();
+    response = await this._accountDAO.getAll(
+      this._payload.limit,
+      this._payload.offset,
+    );
 
     return response;
   }

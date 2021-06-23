@@ -13,7 +13,7 @@ export class AccountController {
   run(): Router {
     this._router.post('/login', new LoginController().run);
     this._router.post('/account', new CreateAccountController().run);
-    this._router.get('/account', new FindAccountController().run);
+    this._router.get('/account/:account?', new FindAccountController().run);
     return this._router;
   }
 }

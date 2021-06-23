@@ -16,7 +16,7 @@ export class CreateAccountController {
       if (result.status !== HTTP_STATUS.CREATED)
         throw new Error('Error al crear la cuenta');
 
-      return res.status(HTTP_STATUS.CREATED).send(result);
+      return res.status(HTTP_STATUS.CREATED).send(result.data);
     } catch (error) {
       const errorMessage = error.response?.data
         ? error.response.data.message

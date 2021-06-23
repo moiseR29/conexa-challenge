@@ -15,7 +15,7 @@ export class AccountController {
     this._router.post('/login', new LoginController().run);
     this._router.post('/account', new CreateAccountController().run);
     this._router.get(
-      '/account/:accountId?',
+      '/account/:account?',
       [new JWTMiddleware().run],
       new FindAccountController().run,
     );

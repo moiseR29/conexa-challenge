@@ -51,9 +51,13 @@ class CoreApi {
     return format(result);
   }
 
-  async getAccounts(jwt: string): Promise<CoreResponse> {
+  async getAccounts(
+    jwt: string,
+    limit: number,
+    offset: number,
+  ): Promise<CoreResponse> {
     const result = await axios.get(
-      `${this._domain}/api/account`,
+      `${this._domain}/api/account?page=${offset}&limit=${limit}`,
       this.preparedConfig({
         'x-conexa-token': jwt,
       }),
@@ -61,9 +65,12 @@ class CoreApi {
     return format(result);
   }
 
-  async getAccountById(accountId: number, jwt: string): Promise<CoreResponse> {
+  async getAccountByUsername(
+    account: string,
+    jwt: string,
+  ): Promise<CoreResponse> {
     const result = await axios.get(
-      `${this._domain}/api/account/${accountId}`,
+      `${this._domain}/api/account/${account}`,
       this.preparedConfig({
         'x-conexa-token': jwt,
       }),

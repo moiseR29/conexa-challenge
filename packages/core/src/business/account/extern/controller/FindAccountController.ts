@@ -9,10 +9,14 @@ export class FindAccountController {
     try {
       const accountDAO = new MongoAccountDAO();
 
+      const { page = 1, limit = 10 } = req.query;
+
       const useCase = new FindAccount({
         accountDAO,
         payload: {
-          accountId: req.params.accountId ?? '',
+          account: req.params.account ?? '',
+          limit: Number(limit),
+          offset: Number(page),
         },
       });
 

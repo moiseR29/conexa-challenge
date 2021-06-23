@@ -19,7 +19,7 @@ export class LoginController {
           .send({ message: result.data });
 
       res.setHeader('x-conexa-token', result.headers['x-conexa-token']);
-      return res.status(HTTP_STATUS.CREATED).send(result);
+      return res.status(HTTP_STATUS.CREATED).send(result.data);
     } catch (error) {
       const errorMessage = error.response?.data
         ? error.response.data.message

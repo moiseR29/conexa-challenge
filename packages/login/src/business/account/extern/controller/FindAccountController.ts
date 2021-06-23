@@ -10,9 +10,21 @@ export class FindAccountController {
 
       if (!token) throw new Error('need token');
 
-      const response = await CoreApi.getAccounts(token);
+      const { page = 1, limit = 10 } = req.query;
 
-      if (response.status) {
+      const account = req.params.account ?? '';
+      let response: any;
+
+      if (account)
+        response = await CoreApi.getAccountByUsername(account, token);
+      else
+        response = await CoreApi.getAccounts(
+          token,
+          Number(limit),
+          Number(page),
+        );
+
+      if (response.status === HTTP_STATUS.BAD_REQUEST) {
         return res
           .status(HTTP_STATUS.BAD_REQUEST)
           .send({ message: response.data });

@@ -29,12 +29,18 @@ export class MongoAccountDAO implements AccountDAO {
 
   async getByUsername(username: string): Promise<Account | null> {
     this._log.info('Get by username --> ', username);
-    const account = await AccountModel.findOne({ username });
+    const account = await AccountModel.findOne({
+      username: username.toLowerCase(),
+    });
     return account ? format(account) : account;
   }
 
-  async getAll(): Promise<Account[]> {
+  async getAll(limit: number, offset: number): Promise<Account[]> {
     this._log.info('Get all --> ');
-    return (await AccountModel.find({})).map(format);
+    const result = await AccountModel.find({})
+      .limit(limit * 1)
+      .skip((offset - 1) * limit)
+      .exec();
+    return result.map(format);
   }
 }

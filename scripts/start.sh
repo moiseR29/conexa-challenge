@@ -10,27 +10,30 @@ ROOT_PATH=$(pwd)
 startMongo() {
   echo "prepared mongo database"
   if [ "$(docker ps -a | grep mongo)" ]; then
-    docker stop mongo && docker start mongo 
-  else
-    docker run -d --name mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=conexauser -e MONGO_INITDB_ROOT_PASSWORD=password mongo
+    docker stop mongo && docker rm mongo 
   fi
+
+  docker run -d --name mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=conexauser -e MONGO_INITDB_ROOT_PASSWORD=password mongo
 }
 
 startCore() {
   echo "Start Microservices Core"
 
+  if [ "$(docker ps -a | grep core)" ]; then
+    docker stop core && docker rm core && docker rmi core 
+  fi 
+
   cd packages/core 
   docker build -t core . 
-  docker run --name core -d -p 8080:8080 --link mongo core 
+  docker run --name core -d --link mongo core 
   cd $ROOT_PATH
 }
 
 startLogin() {
   echo "Start Microservices Login"
 
-  if [ ! "$(docker ps -a | grep core)" ]; then
-    echo "por favor levanta el core"
-    exit 1
+  if [ "$(docker ps -a | grep login)" ]; then
+    docker stop login && docker rm login && docker rmi login 
   fi
 
   cd packages/login 
