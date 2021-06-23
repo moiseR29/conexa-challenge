@@ -35,6 +35,12 @@ Como docker-compose no tiene soporte en producción, prefieron levantar docker p
 
 ## Uso
 
+### Iniciar
+
+```bash
+yarn install && yarn start
+```
+
 ### **Crear cuenta**
 
 ```bash
