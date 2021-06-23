@@ -4,7 +4,7 @@ import { CryptManager, ACCESS_KEY, HTTP_STATUS, Logger } from '../../../utils';
 
 export class AccessKeyMiddleware {
   async run(req: Request, res: Response, next: NextFunction) {
-    const Log: Logger = new Logger('Token Access MIDD');
+    const Log: Logger = new Logger('Key Access MIDD');
     try {
       const key = req.get(ACCESS_KEY);
 
@@ -22,7 +22,7 @@ export class AccessKeyMiddleware {
 
       next();
     } catch (error) {
-      Log.error(`Invalid Token`);
+      Log.error(`Invalid Key`);
       return res
         .status(HTTP_STATUS.UNAUTHORIZED)
         .send({ message: error.message });

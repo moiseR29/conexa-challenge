@@ -1,13 +1,8 @@
 import config from './config';
 import { App, Router, Middlewares } from './server';
-import { Mongo } from './database';
 import { Logger } from './utils';
 
 const Log: Logger = new Logger('Index');
-
-export const preparedDatabase = (): Mongo => {
-  return new Mongo();
-};
 
 export const preparedServer = (): App => {
   const server = new App();
@@ -18,7 +13,6 @@ export const preparedServer = (): App => {
 
 const main = async () => {
   try {
-    await preparedDatabase().start();
     await preparedServer().start(config.server.port);
   } catch (error) {
     Log.error(error);

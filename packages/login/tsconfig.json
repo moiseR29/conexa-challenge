@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "outDir": "build",
+    "rootDir": "src",
+    "importsNotUsedAsValues": "preserve",
+    "esModuleInterop": true,
     "target": "ES2019",
     "module": "commonjs",
     "moduleResolution": "node",

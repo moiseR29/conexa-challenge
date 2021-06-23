@@ -3,13 +3,10 @@ import * as dotenv from 'dotenv';
 
 dotenv.config({ path: `${__dirname.split('/build')[0]}/.env` });
 
-export const DefaultConfig: Config = {
-  database: {
-    user: 'conexauser',
-    password: 'password',
-    db: 'conexa',
-    host: 'mongo',
-    port: 27017,
+export const TestConfig: Config = {
+  coreApi: {
+    key: '',
+    domain: '',
   },
   session: {
     salt: 10,
@@ -18,7 +15,7 @@ export const DefaultConfig: Config = {
   server: {
     port: 8080,
     basePath: '/api',
-    env: 'develop',
-    accessToken: 'conexa',
+    env: 'test',
+    accessToken: 'egg',
   },
 };
