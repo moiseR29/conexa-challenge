@@ -1,7 +1,7 @@
 import config from './config';
 import { App, Router, Middlewares } from './server';
 import { Mongo } from './database';
-import { Logger } from './utils';
+import { CryptManager, Logger } from './utils';
 
 const Log: Logger = new Logger('Index');
 
@@ -26,4 +26,4 @@ const main = async () => {
   }
 };
 
-main();
+if (config.server.env !== 'test') main();

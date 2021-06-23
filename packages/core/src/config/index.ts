@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import { DefaultConfig } from './default';
-import { TestConfig } from './test';
+import { TestConfig } from './testing';
 import { Config } from './config';
 import { Logger } from '../utils';
 

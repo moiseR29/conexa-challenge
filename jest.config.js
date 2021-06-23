@@ -5,5 +5,5 @@ const base = require('./jest.config.base');
 // eslint-disable-next-line no-undef
 module.exports = {
   ...base,
-  projects: ['<rootDir>/packages/**'],
+  projects: ['<rootDir>/packages/core' /*, '<rootDir>/packages/login'*/],
 };

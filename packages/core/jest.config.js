@@ -14,4 +14,3 @@ module.exports = {
   name: packageJson.name,
   displayName: packageJson.name,
 };
-

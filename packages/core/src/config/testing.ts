@@ -5,10 +5,10 @@ dotenv.config({ path: `${__dirname.split('/build')[0]}/.env` });
 
 export const TestConfig: Config = {
   database: {
-    user: 'egg',
+    user: 'conexauser',
     password: 'password',
     db: 'test',
-    host: 'localhost',
+    host: 'mongo-test',
     port: 27017,
   },
   session: {
@@ -19,6 +19,6 @@ export const TestConfig: Config = {
     port: 8080,
     basePath: '/api',
     env: 'test',
-    accessToken: 'egg',
+    accessToken: 'conexa',
   },
 };

@@ -21,7 +21,9 @@
     "**/__tests__/**/*",
     "**/__mocks__/**/*",
     "**/build/**/*",
-    "scripts"
+    "scripts",
+    "test",
+    "build"
   ],
   "include": [
     "src/"
