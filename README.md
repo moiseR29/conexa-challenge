@@ -32,3 +32,52 @@ Ya si fuera a pasar a producción, dudo usarlo ya que no controla muy bien las v
 
 ### **por que no docker-compose ?** 
 Como docker-compose no tiene soporte en producción, prefieron levantar docker por separados, pero por medio de un scripts asi siempre controlo el alta de estos.
+
+## Uso
+
+### **Crear cuenta**
+
+```bash
+curl --request POST \
+  --url http://localhost:8090/api/account \
+  --header 'Content-Type: application/json' \
+  --header 'x-access-key: $2b$10$Kz1gvbn.hXGaOM21y7Pf0.boB017ZUtzQTDVolk0PTH/fugMnqdZC' \
+  --data '{
+	"username": "fakeaccount",
+	"password": "password"
+}'
+```
+
+### **login**
+
+> retorna el token de acceso a la plataforma ( req.get('x-conexa-token') )
+
+```bash
+curl --request POST \
+  --url http://localhost:8090/api/login \
+  --header 'Content-Type: application/json' \
+  --header 'x-access-key: $2b$10$Kz1gvbn.hXGaOM21y7Pf0.boB017ZUtzQTDVolk0PTH/fugMnqdZC' \
+  --data '{
+	"username": "fakeaccount",
+	"password": "password"
+}'
+```
+
+### **Search**
+
+```bash
+curl --request GET \
+  --url 'http://localhost:8090/api/account/fakeaccount' \
+  --header 'Content-Type: application/json' \
+  --header 'x-access-key: $2b$10$Kz1gvbn.hXGaOM21y7Pf0.boB017ZUtzQTDVolk0PTH/fugMnqdZC' \
+  --header 'x-conexa-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI2MGQzNDI2ZWJmMDY4NTAwMTJiY2ZjN2MiLCJ1c2VybmFtZSI6Im1vaXNlIiwiaWF0IjoxNjI0NDU3ODQ3LCJleHAiOjE2MjQ0NjE0NDd9.cD-C-QvSOT85q7S69f-9uC_LNLrBtJHjZPHKUbCEkUc' 
+```
+
+
+```bash
+curl --request GET \
+  --url 'http://localhost:8090/api/account?limit=1' \
+  --header 'Content-Type: application/json' \
+  --header 'x-access-key: $2b$10$Kz1gvbn.hXGaOM21y7Pf0.boB017ZUtzQTDVolk0PTH/fugMnqdZC' \
+  --header 'x-conexa-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI2MGQzNDI2ZWJmMDY4NTAwMTJiY2ZjN2MiLCJ1c2VybmFtZSI6Im1vaXNlIiwiaWF0IjoxNjI0NDU3ODQ3LCJleHAiOjE2MjQ0NjE0NDd9.cD-C-QvSOT85q7S69f-9uC_LNLrBtJHjZPHKUbCEkUc' 
+```

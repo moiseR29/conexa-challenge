@@ -16,6 +16,6 @@ export const TestConfig: Config = {
     port: 8080,
     basePath: '/api',
     env: 'test',
-    accessToken: 'egg',
+    accessToken: 'conexa',
   },
 };
